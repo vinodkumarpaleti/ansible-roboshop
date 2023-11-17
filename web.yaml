@@ -2,7 +2,7 @@
   hosts: web
   become: yes
   tasks:
-  - name: Installing mginx
+  - name: Installing nginx
     ansible.builtin.yum:
       name: nginx
       state: installed
@@ -26,7 +26,6 @@
   - name: extract the web artifacts
     ansible.builtin.unarchive:
       src: /tmp/web.zip
-      dest: /app
       remote_src: yes
 
   - name: copy the roboshop.conf into default.d directory
