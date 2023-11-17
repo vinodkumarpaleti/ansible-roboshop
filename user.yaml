@@ -1,9 +1,10 @@
-- name: Installing user component
+- name: Install user component
   hosts: user
   become: yes
   tasks:
-  - name: set up NPM source
+  - name: setup NPM source
     ansible.builtin.shell: "curl -sL https://rpm.nodesource.com/setup_lts.x | bash"
+
   - name: Install NodeJS
     ansible.builtin.yum:
       name: nodejs
@@ -11,7 +12,7 @@
 
   - name: check roboshop user exist or not
     ansible.builtin.command: id roboshop
-    register: out #out is variable name
+    register: out #output is variable name
     ignore_errors: true
 
   - when: out.rc != 0
@@ -35,23 +36,23 @@
       path: /app
       state: directory
 
-  - name: download user artifacts
+  - name: download user artifact
     ansible.builtin.get_url:
-     url: https://roboshop-builds.s3.amazonaws.com/user.zip
-     dest: /tmp
+      url: https://roboshop-builds.s3.amazonaws.com/user.zip
+      dest: /tmp
 
-  - name: extract user artifacts
+  - name: extract user artifact
     ansible.builtin.unarchive:
       src: /tmp/user.zip
       dest: /app
       remote_src: yes
 
-  - name: Install dependencies
+  - name: install dependencies
     ansible.builtin.command: npm install
     args:
       chdir: /app
 
-  - name: copy user.service file into systemd directory
+  - name: copy user service
     ansible.builtin.copy:
       src: user.service
       dest: /etc/systemd/system/user.service
@@ -65,13 +66,13 @@
       src: mongodb.repo
       dest: /etc/yum.repos.d/mongo.repo
 
-  - name: Install MongoDB shell
+  - name: Install MongoDB
     ansible.builtin.yum:
       name: mongodb-org-shell
       state: installed
 
   - name: load user data
-    ansible.builtin.command: mongo --host mongodb.jcglobalit.online < /app/schema/user.js
+    ansible.builtin.command: mongo --host mongodb.joindevops.online < /app/schema/user.js
 
   - name: restart user
     ansible.builtin.service:
