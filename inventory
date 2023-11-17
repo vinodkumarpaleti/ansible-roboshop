@@ -12,3 +12,6 @@ redis.jcglobalit.online
 
 [user]
 user.jcglobalit.online
+
+[cart]
+cart.jcglobalit.online
