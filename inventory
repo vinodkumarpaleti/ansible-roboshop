@@ -6,3 +6,6 @@ catalogue.jcglobalit.online
 
 [web]
 web.jcglobalit.online
+
+[redis]
+redis.jcglobalit.online
