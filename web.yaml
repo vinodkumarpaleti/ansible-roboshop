@@ -26,6 +26,7 @@
   - name: extract the web artifacts
     ansible.builtin.unarchive:
       src: /tmp/web.zip
+      dest: /usr/share/nginx/html
       remote_src: yes
 
   - name: copy the roboshop.conf into default.d directory
