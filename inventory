@@ -18,3 +18,6 @@ cart.jcglobalit.online
 
 [mysql]
 mysql.jcglobalit.online
+
+[shipping]
+shipping.jcglobalit.online
