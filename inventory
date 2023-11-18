@@ -21,3 +21,6 @@ mysql.jcglobalit.online
 
 [shipping]
 shipping.jcglobalit.online
+
+[rabbitmq]
+rabbitmq.jcglobalit.online
