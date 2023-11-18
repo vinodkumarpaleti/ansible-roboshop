@@ -24,3 +24,6 @@ shipping.jcglobalit.online
 
 [rabbitmq]
 rabbitmq.jcglobalit.online
+
+[payment]
+payment.jcglobalit.online
